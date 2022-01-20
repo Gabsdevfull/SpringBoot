@@ -22,27 +22,25 @@ import br.org.generation.blogpessoal.repository.PostagemRepository;
 
 @RestController
 @RequestMapping("/Postagem")
-@CrossOrigin("*")
-
-
+@CrossOrigin("*") //Verificar no git o implemento desta anotação
 public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository repository;
 	
 	@GetMapping
-	public ResponseEntity<List<Postagem>> GetAll(){
+	public ResponseEntity<List<Postagem>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Postagem> GetById(@PathVariable long id){
+	public ResponseEntity<Postagem> getById(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo){
+	public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 
@@ -53,8 +51,10 @@ public class PostagemController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
+	public ResponseEntity<Postagem> putPostagem (@Valid @RequestBody Postagem postagem){
+        return repository.findById(postagem.getId())
+                .map(resposta -> ResponseEntity.ok().body(repository.save(postagem)))
+                .orElse(ResponseEntity.notFound().build());
 	}	
 	
 	@DeleteMapping("/{id}")
