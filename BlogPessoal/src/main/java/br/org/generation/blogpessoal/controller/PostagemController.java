@@ -21,7 +21,7 @@ import br.org.generation.blogpessoal.model.Postagem;
 import br.org.generation.blogpessoal.repository.PostagemRepository;
 
 @RestController
-@RequestMapping("/Postagem")
+@RequestMapping("/postagem")
 @CrossOrigin("*") //Verificar no git o implemento desta anotação
 public class PostagemController {
 	

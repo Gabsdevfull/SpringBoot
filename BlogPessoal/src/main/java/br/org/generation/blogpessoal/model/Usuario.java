@@ -25,8 +25,9 @@ public class Usuario {
 	private String usuario;
 	
 	@NotBlank
-	@Size(min = 6, max = 12)
 	private String senha;
+	
+	private String foto;
 
 	public long getId() {
 		return id;
@@ -58,6 +59,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getFoto() {
+			return foto;
+	}
+
+	public void setFoto(String foto) {
+			this.foto = foto;
 	}
 
 	
