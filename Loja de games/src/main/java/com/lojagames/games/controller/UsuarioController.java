@@ -1,4 +1,4 @@
-package br.org.generation.blogpessoal.controller;
+package com.lojagames.games.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.org.generation.blogpessoal.model.UsuarioLogin;
-import br.org.generation.blogpessoal.model.Usuario;
-import br.org.generation.blogpessoal.repository.UsuarioReporitory;
-import br.org.generation.blogpessoal.service.UsuarioService;
+import com.lojagames.games.model.Usuario;
+import com.lojagames.games.model.UsuarioLogin;
+import com.lojagames.games.repository.UsuarioRepository;
+import com.lojagames.games.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -30,7 +30,7 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private UsuarioReporitory usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll() {

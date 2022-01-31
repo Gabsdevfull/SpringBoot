@@ -1,20 +1,14 @@
-package br.org.generation.blogpessoal.model;
+package com.lojagames.games.model;
 
-public class UserLogin {
-	
+public class UsuarioLogin {
+
 	private Long id;
-	
-
 	private String nome;
-	
 	private String usuario;
-	
 	private String senha;
-	
 	private String foto;
-	
 	private String token;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -47,14 +41,6 @@ public class UserLogin {
 		this.senha = senha;
 	}
 
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
 	public String getFoto() {
 		return foto;
 	}
@@ -62,7 +48,13 @@ public class UserLogin {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 }

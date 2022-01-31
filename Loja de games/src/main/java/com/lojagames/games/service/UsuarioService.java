@@ -1,29 +1,35 @@
-package br.org.generation.blogpessoal.service;
+package com.lojagames.games.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.org.generation.blogpessoal.model.UsuarioLogin;
-import br.org.generation.blogpessoal.model.Usuario;
-import br.org.generation.blogpessoal.repository.UsuarioReporitory;
-import org.apache.commons.codec.binary.Base64;
+import com.lojagames.games.model.Usuario;
+import com.lojagames.games.model.UsuarioLogin;
+import com.lojagames.games.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioReporitory usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
 	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
+		
+		int idade = usuario.getIdade();
+
+		if (idade < 18)
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não é possivel cadastrar usuários menor de 18", null);
 
 		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
 			return Optional.empty();
+
 
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 

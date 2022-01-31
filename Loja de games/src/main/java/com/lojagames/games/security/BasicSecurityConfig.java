@@ -1,4 +1,5 @@
-package br.org.generation.blogpessoal.security;
+package com.lojagames.games.security;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	
 	@Autowired
 	private UserDetailsService userDatailsService;
 
@@ -44,5 +46,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 
 	}
+	
+	
 
 }
